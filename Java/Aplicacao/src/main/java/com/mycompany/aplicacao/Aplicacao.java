@@ -80,33 +80,5 @@ public class Aplicacao {
     private static boolean campoEmail(String email) {
         return email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,}$"); // Regex para permitir domínios variados
     }
-    public static void verificaMaiorIdade() {
-        Scanner scanner = new Scanner(System.in);
-        
-        System.out.print("Digite sua data de nascimento (DD-MM-YYYY): ");
-        String dataNascimento = scanner.nextLine();
-
-        boolean maiorDeIdade = calculaMaiorIdade(dataNascimento);
-        
-        if (maiorDeIdade) {
-            System.out.println("A pessoa é maior de idade.");
-        } else {
-            System.out.println("A pessoa não é maior de idade.");
-        }
-
-        scanner.close();
-    }
-
-    private static boolean calculaMaiorIdade(String dataNascimento) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        try {
-            LocalDate nascimento = LocalDate.parse(dataNascimento, formatter);
-            LocalDate hoje = LocalDate.now();
-            Period idade = Period.between(nascimento, hoje);
-            return idade.getYears() >= 18;
-        } catch (DateTimeParseException e) {
-            System.out.println("Data de nascimento inválida: " + e.getMessage());
-            return false;
-        }
-    }
+    
 }
